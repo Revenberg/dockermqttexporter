@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  mqttexporter:
+    image: revenberg/mqttexporter
+    container_name: solar2mqtt
+    environment:
+      - MQTT_ADDRESS=192.168.2.59
+      - MQTT_PORT=1883
+      - MQTT_TOPIC=reading/solar
+    restart: always
+    depends_on:
+      - mqtt
+    restart: always
+    links:
+      - mqtt
+
+  mqtt:
+    image: "eclipse-mosquitto:latest"
+    container_name: mqtt
+    environment:
+      - TZ=Europe/Amsterdam
+      - "MQTT_BROKER_URL=mqtt://127.0.0.1"
+    ports:
+      - 1883:1883
+      - 9001:9001
+    user: "1000:1000"
+    volumes:
+      - /var/docker-compose/data/mqtt/config:/mosquitto/config
+      - /var/docker-compose/data/mqtt/data:/mosquitto/data
+      - /var/docker-compose/data/mqtt/log:/mosquitto/log
+    restart: always
+    network_mode: host
