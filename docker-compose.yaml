@@ -11,7 +11,7 @@ services:
       - 9000
     environment:
       - MQTT_ADDRESS=192.168.2.59
-      - MQTT_TOPIC=reading/#
+      - MQTT_TOPIC=watermeter/reading/#
       - PROMETHEUS_PREFIX=reading_
       - TOPIC_LABEL=reading
 
