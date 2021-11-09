@@ -151,7 +151,7 @@ def _parse_message(topic, payload):
             info[-1]: payload
         }
 
-        return topic, payload_dict
+        return topic, json.dumps(payload_dict)
 
     return topic, payload
 
