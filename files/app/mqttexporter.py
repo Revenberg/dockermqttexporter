@@ -133,10 +133,10 @@ def _parse_message(topic, payload):
     if "shellies" in topic:
         topic, payload = _normalize_shelly_msg(topic, payload)
 
+    topic = topic.replace("/", "_")
     # parse MQTT topic and payload
     try:
-        payload = json.loads(payload)
-        topic = topic.replace("/", "_")
+        payload = json.loads(payload)        
     except json.JSONDecodeError:
         LOG.debug('failed to parse as JSON: "%s"', payload)
         return None, None
@@ -147,7 +147,7 @@ def _parse_message(topic, payload):
     # handle payload having single values and
     if not isinstance(payload, dict):
         LOG.debug('unexpected payload format: "%s"', payload)
-        return None, None
+        return topic, payload
 
     return topic, payload
 
