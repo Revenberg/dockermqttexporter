@@ -146,7 +146,6 @@ def _parse_message(topic, payload):
 
     # handle payload having single values and
     if not isinstance(payload, dict):
-        LOG.debug('unexpected payload format: "%s"', payload)
         return topic, payload
 
     return topic, payload
