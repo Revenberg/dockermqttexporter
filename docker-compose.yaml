@@ -3,17 +3,17 @@ version: '3.8'
 services:
   mqttexporter:
     image: revenberg/mqttexporter
-    container_name: solar2mqtt
+    container_name: mqttexporter
+    restart: always
+    ports:
+      - 9000:9000
+    expose:
+      - 9000
     environment:
-      - MQTT_ADDRESS=192.168.2.59
-      - MQTT_PORT=1883
-      - MQTT_TOPIC=reading/solar
-    restart: always
-    depends_on:
-      - mqtt
-    restart: always
-    links:
-      - mqtt
+      - MQTT_ADDRESS={{ ip_address }}
+      - MQTT_TOPIC=reading/#
+      - PROMETHEUS_PREFIX=reading_
+      - TOPIC_LABEL=reading
 
   mqtt:
     image: "eclipse-mosquitto:latest"
