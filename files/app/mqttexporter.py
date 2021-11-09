@@ -146,7 +146,12 @@ def _parse_message(topic, payload):
 
     # handle payload having single values and
     if not isinstance(payload, dict):
-        return topic, payload
+        info = topic.split("/")            
+        payload_dict = {            
+            info[-1]: payload
+        }
+
+        return topic, payload_dict
 
     return topic, payload
 
