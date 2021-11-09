@@ -14,6 +14,7 @@ services:
       - MQTT_TOPIC=watermeter/reading/#
       - PROMETHEUS_PREFIX=reading_
       - TOPIC_LABEL=reading
+      - LOG_LEVEL=DEBUG
 
   mqtt:
     image: "eclipse-mosquitto:latest"
