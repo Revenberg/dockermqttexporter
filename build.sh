@@ -19,7 +19,7 @@ if [ $ex == true ]; then
     git pull
     chmod +x build.sh
 
-    docker image build -t revenberg/mqttexporter .
+    docker image build -t revenberg/mqttexporter:latest .
 
     docker push revenberg/mqttexporter
 
