@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  mqttexporter:
-    image: revenberg/mqttexporter:latest
-    container_name: mqttexporter
+  mqtt-exporter:
+    image: revenberg/mqtt-exporter:latest
+    container_name: mqtt-exporter
     restart: always
     ports:
       - 9000:9000
