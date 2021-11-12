@@ -171,7 +171,8 @@ def expose_metrics(client, userdata, msg):  # pylint: disable=W0613
 
     if not topic or not payload:
         return
-
+    
+    LOG.debug( payload )
     _parse_metrics(payload, topic)
 
     # increment received message counter
