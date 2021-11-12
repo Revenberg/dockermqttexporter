@@ -10,7 +10,7 @@ services:
     expose:
       - 9000
     environment:
-      - MQTT_ADDRESS=192.168.2.59
+      - MQTT_ADDRESS=192.168.2.80
       - MQTT_TOPIC=watermeter/reading/#
       - PROMETHEUS_PREFIX=reading_
       - TOPIC_LABEL=reading
