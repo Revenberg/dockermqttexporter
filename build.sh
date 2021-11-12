@@ -21,7 +21,7 @@ if [ $ex == true ]; then
 
     docker image build -t revenberg/mqttexporter:latest .
 
-    docker push revenberg/mqttexporter
+    docker push revenberg/mqttexporter:latest
 
     # testing: 
 
