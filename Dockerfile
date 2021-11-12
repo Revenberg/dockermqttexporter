@@ -9,4 +9,4 @@ RUN pip install -r requirements.txt
 
 COPY files/app* /app/
 
-CMD python ./mqttexporter.py
+CMD python ./mqtt-exporter.py
