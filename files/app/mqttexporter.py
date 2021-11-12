@@ -50,7 +50,6 @@ def subscribe(client, userdata, flags, connection_result):  # pylint: disable=W0
 
 def _parse_metrics(data, topic, prefix=""):
     """Attempt to parse a set of metrics.
-
     Note when `data` contains nested metrics this function will be called recursivley.
     """
     for metric, value in data.items():
@@ -82,9 +81,7 @@ def _parse_metrics(data, topic, prefix=""):
 
 def _parse_metric(data):
     """Attempt to parse the value and extract a number out of it.
-
     Note that `data` is untrusted input at this point.
-
     Raise ValueError is the data can't be parsed.
     """
     if isinstance(data, (int, float)):
@@ -109,7 +106,6 @@ def _parse_metric(data):
 
 def _normalize_shelly_msg(topic, payload):
     """Normalize message from Shelly sensors to classic topic payload format.
-
     Shelly integrated topic and payload differently:
     * topic: shellies/room/sensor/temperature
     * payload: 20.00
@@ -158,11 +154,6 @@ def _parse_message(topic, payload):
 
 def expose_metrics(client, userdata, msg):  # pylint: disable=W0613
     """Expose metrics to prometheus when a message has been published (callback)."""
-#    for iTopic in IGNORED_TOPICS:
-#        if iTopic in msg.topic:
-#            LOG.debug('Topic "%s" was ignored', msg.topic, iTopic)
-#            return
-
     if msg.topic in IGNORED_TOPICS:
         LOG.debug('Topic "%s" was ignored', msg.topic)
         return
@@ -171,8 +162,7 @@ def expose_metrics(client, userdata, msg):  # pylint: disable=W0613
 
     if not topic or not payload:
         return
-    
-    LOG.debug( payload )
+
     _parse_metrics(payload, topic)
 
     # increment received message counter
@@ -185,7 +175,6 @@ def main():
 
     def stop_request(signum, frame):
         """Stop handler for SIGTERM and SIGINT.
-
         Keyword arguments:
         signum -- signal number
         frame -- None or a frame object. Represents execution frames
