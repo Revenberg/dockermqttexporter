@@ -59,6 +59,8 @@ def _parse_metrics(data, topic, prefix=""):
     LOG.debug("===================================================")
     LOG.debug("===================================================")
     LOG.debug("===================================================")
+
+def _parse_metrics(data, topic, prefix=""):
     for metric, value in data.items():
         # when value is a dict recursivley call _parse_metrics to handle these messages
         if isinstance(value, dict):
