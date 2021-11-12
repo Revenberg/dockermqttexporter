@@ -52,6 +52,8 @@ def _parse_metrics(data, topic, prefix=""):
     """Attempt to parse a set of metrics.
     Note when `data` contains nested metrics this function will be called recursivley.
     """
+    LOG.debug("===================================================")
+    LOG.debug( data )
     for metric, value in data.items():
         # when value is a dict recursivley call _parse_metrics to handle these messages
         if isinstance(value, dict):
