@@ -52,7 +52,7 @@ def _parse_metrics(data, topic, prefix=""):
     """Attempt to parse a set of metrics.
     Note when `data` contains nested metrics this function will be called recursivley.
     """
-    
+
     for metric, value in data.items():
         # when value is a dict recursivley call _parse_metrics to handle these messages
         if isinstance(value, dict):
@@ -127,6 +127,7 @@ def _normalize_shelly_msg(topic, payload):
 def _parse_message(topic, payload):
     """Parse topic and payload to have exposable information."""
     # Shelly sensors support
+
     if "shellies" in topic:
         topic, payload = _normalize_shelly_msg(topic, payload)
 
@@ -142,14 +143,17 @@ def _parse_message(topic, payload):
         return None, None
 
     # handle payload having single values and
+
     if not isinstance(payload, dict):
+        LOG.debug('No dict')
         info = topic.split("/")            
         payload_dict = {            
             info[-1]: payload
         }
-
+        LOG.debug(json.dumps(payload_dict))
+        
         return topic, json.dumps(payload_dict)
-
+    LOG.debug('dict')
     return topic, payload
 
 
