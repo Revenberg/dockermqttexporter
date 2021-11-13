@@ -145,15 +145,11 @@ def _parse_message(topic, payload):
     # handle payload having single values and
 
     if not isinstance(payload, dict):
-        LOG.debug('No dict')
         info = topic.split("/")            
         payload_dict = {            
             info[-1]: payload
-        }
-        LOG.debug(json.dumps(payload_dict))
-        
+        }    
         return topic, payload_dict
-    LOG.debug('dict')
     return topic, payload
 
 
