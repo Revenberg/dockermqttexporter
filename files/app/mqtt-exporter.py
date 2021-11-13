@@ -152,7 +152,7 @@ def _parse_message(topic, payload):
         }
         LOG.debug(json.dumps(payload_dict))
         
-        return topic, json.dumps(payload_dict)
+        return topic, payload_dict
     LOG.debug('dict')
     return topic, payload
 
