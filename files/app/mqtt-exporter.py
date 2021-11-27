@@ -13,7 +13,9 @@ from prometheus_client import Counter, Gauge, start_http_server
 import os
 
 PREFIX = os.getenv("PROMETHEUS_PREFIX", "mqtt_")
+PROMETHEUS_PORT = int(os.getenv("PROMETHEUS_PORT", "9000"))
 TOPIC_LABEL = os.getenv("TOPIC_LABEL", "topic")
+
 TOPIC = os.getenv("MQTT_TOPIC", "#")
 IGNORED_TOPICS = os.getenv("MQTT_IGNORED_TOPICS", "").split(",")
 
@@ -23,7 +25,6 @@ MQTT_PORT = int(os.getenv("MQTT_PORT", "1883"))
 MQTT_KEEPALIVE = int(os.getenv("MQTT_KEEPALIVE", "60"))
 MQTT_USERNAME = os.getenv("MQTT_USERNAME")
 MQTT_PASSWORD = os.getenv("MQTT_PASSWORD")
-PROMETHEUS_PORT = int(os.getenv("PROMETHEUS_PORT", "9000"))
 
 logging.basicConfig(level=LOG_LEVEL)
 LOG = logging.getLogger("mqtt-exporter")
